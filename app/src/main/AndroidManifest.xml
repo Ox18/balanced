@@ -5,18 +5,35 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowClearUserData="true"
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
+        android:allowClearUserData="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".LobbyActivity"></activity>
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ActivityAddCourse"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityProfile"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityCommentsCourse"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityLobbyProfesional"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.DetailMyCourse"
+            android:exported="true" />
+        <activity android:name=".Activities.LobbyActivity" />
+        <activity android:name=".Activities.PaymentActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,12 +7,12 @@
     android:orientation="vertical"
     android:padding="25dp"
     android:background="#f5f8fe"
-    tools:context=".LobbyActivity">
+    tools:context=".Activities.LobbyActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:showDividers="middle"
-        android:layout_height="100dp">
+        android:layout_height="80dp">
         <LinearLayout
             android:layout_width="290dp"
             android:layout_height="50dp"
@@ -49,4 +49,41 @@
                 android:text="W" />
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:background="@drawable/layout_bg_input"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtSearchCourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:hint="Specialidad o categoria" />
+
+        <Button
+            android:id="@+id/btnSearchByName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/layout_image_profile"
+            android:text="Search"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMisCursos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="22dp"
+        tools:listitem="@layout/card_course" />
 </LinearLayout>

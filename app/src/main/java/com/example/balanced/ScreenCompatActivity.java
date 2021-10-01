@@ -7,7 +7,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.balanced.Entity.User;
+import com.example.balanced.Activities.LobbyActivity;
+import com.example.balanced.Activities.MainActivity;
+import com.example.balanced.Activities.PaymentActivity;
+import com.example.balanced.Activities.RegisterActivity;
 import com.example.balanced.Entity.User2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

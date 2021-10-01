@@ -1,4 +1,4 @@
-package com.example.balanced;
+package com.example.balanced.Activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.balanced.R;
+import com.example.balanced.ScreenCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
