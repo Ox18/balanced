@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:background="#f5f8fe"
+    tools:context=".LobbyActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="290dp"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#8f9295"
+                android:textStyle="bold"
+                android:id="@+id/txtWelcome"
+                android:textSize="15dp"
+                android:text="Bienvenido, Wilmer" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="26dp"
+                android:textColor="#0f1e5d"
+                android:textStyle="bold"
+                android:text="Tus servicios" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/profile_circle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@drawable/layout_image_profile">
+            <TextView
+                android:id="@+id/logoLetter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="22dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:text="W" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

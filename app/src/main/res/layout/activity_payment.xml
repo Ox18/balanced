@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/wallpaper"
+    tools:context=".PaymentActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:orientation="vertical"
+        android:padding="35dp">
+        <LinearLayout
+            android:id="@+id/btnClose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/layout_image_profile"
+            android:layout_marginBottom="10dp"
+            >
+            <TextView
+                android:textSize="7dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="X" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:id="@+id/txtWelcome"
+            android:text="Hola, Wilmer" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:paddingTop="15dp"
+            android:text="Estás a un sólo paso" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/layout_bg"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:padding="40dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:text="Completa\nlos datos con tu tarjeta" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Se te cobrará una comisión de S/. 24.00"
+            />
+        <FrameLayout
+            android:id="@+id/contenedorTarjeta"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_width="320dp"
+            android:layout_height="220dp"></FrameLayout>
+        <Button
+            android:background="@drawable/layout_button"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPagar"
+            android:text="Pagar" />
+        <Button
+            android:background="@drawable/layout_button"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnContinuar"
+            android:text="Continuar" />
+
+    </LinearLayout>
+</LinearLayout>
