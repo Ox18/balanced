@@ -120,6 +120,16 @@
             android:orientation="vertical"
             android:gravity="bottom">
             <Button
+                android:id="@+id/btnChangePassword"
+                android:background="@drawable/layout_button_red"
+                android:textColor="#fff"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Solicitar cambio de contraseña"
+                />
+            <Button
+                android:layout_marginTop="10dp"
                 android:id="@+id/btnDeleteAccount"
                 android:background="@drawable/layout_button_red"
                 android:textColor="#fff"

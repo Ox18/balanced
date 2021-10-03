@@ -29,6 +29,7 @@ public class ActivityProfile extends ScreenCompatActivity {
     private EditText edtPHONE;
     private Button btnCerrarSesion;
     private Button btnDeleteAccount;
+    private Button btnChangePassword;
     private User2 user = new User2();
 
     @Override
@@ -45,8 +46,16 @@ public class ActivityProfile extends ScreenCompatActivity {
         edtPHONE = findViewById(R.id.edtPhone);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
+        btnChangePassword = findViewById(R.id.btnChangePassword);
 
         loadComponents();
+
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ResetPassword();
+            }
+        });
 
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +85,12 @@ public class ActivityProfile extends ScreenCompatActivity {
     }
 
     public void loadComponents(){
+        txtVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoadLobby();
+            }
+        });
         mDatabase.child("Users")
                 .child(GetID())
                 .addListenerForSingleValueEvent(
@@ -89,18 +104,7 @@ public class ActivityProfile extends ScreenCompatActivity {
                                 edtCORREO.setText(user2.correo);
                                 edtPHONE.setText(user2.phone);
                                 edtDNI.setText(user2.dni);
-                                txtVolver.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
 
-                                        String roleUser = user2.role;
-                                        String roleUserValidate = "user";
-                                        boolean validateUser = roleUserValidate.equals(roleUser);
-                                        if(validateUser){
-                                            LoadLobby();
-                                        }
-                                    }
-                                });
                             }
 
                             @Override

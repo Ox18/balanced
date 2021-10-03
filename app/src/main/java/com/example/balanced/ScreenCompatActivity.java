@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.balanced.Activities.ActivityProfile;
+import com.example.balanced.Activities.ChangePasswordActivity;
 import com.example.balanced.Activities.CursoDetalleActivity;
 import com.example.balanced.Activities.LobbyActivity;
 import com.example.balanced.Activities.MainActivity;
@@ -49,6 +50,11 @@ public class ScreenCompatActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CursoDetalleActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
+        finish();
+    }
+
+    public void LoadChangePassword(){
+        startActivity(new Intent(this, ChangePasswordActivity.class));
         finish();
     }
 
@@ -220,8 +226,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
         String uid = GetID();
         mDatabase.child("Users")
                 .child(uid)
-                .setValue(user.getMapData())
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .setValue(user.getMapData()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(ScreenCompatActivity.this, "Se actualizaron tus datos", Toast.LENGTH_SHORT).show();
@@ -240,5 +245,45 @@ public class ScreenCompatActivity extends AppCompatActivity {
     public void RefreshActivity(){
         finish();
         startActivity(getIntent());
+    }
+
+    public void ResetPassword(){
+        sendResetPassword(mAuth.getCurrentUser().getEmail());
+    }
+
+    public void sendResetPassword(String email){
+        mAuth.sendPasswordResetEmail(email)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getBaseContext(), "Revise su correo para realizar el cambio de contraseña", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void ChangePassword(String password){
+        mAuth.getCurrentUser()
+                .updatePassword(password)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getBaseContext(), "La contraseña se cambio correctamente", Toast.LENGTH_SHORT).show();
+                            LoadProfile();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

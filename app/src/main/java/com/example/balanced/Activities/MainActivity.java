@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends ScreenCompatActivity {
 
+    private TextView txtResetearPassword;
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnLogin;
@@ -31,6 +32,7 @@ public class MainActivity extends ScreenCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txtResetearPassword = findViewById(R.id.txtResetearPassword);
         edtEmail = (EditText)findViewById(R.id.edtEmail);
         edtPassword = (EditText)findViewById(R.id.edtPassword);
         btnLogin = (Button)findViewById(R.id.btnLogin);
@@ -40,6 +42,25 @@ public class MainActivity extends ScreenCompatActivity {
             @Override
             public void onClick(View view) {
                 LoadRegister();
+            }
+        });
+
+        txtResetearPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean validEmail = false;
+
+                if(edtEmail.getText().toString().isEmpty()) {
+                    validEmail = false;
+                    edtEmail.setError(getString(R.string.TEXT_ERROR_EMPTY_EMAIL));
+                }else {
+                    if (edtEmail.getText().toString().trim().matches(getString(R.string.TEXT_PATTERN_EMAIL))) {
+                        sendResetPassword(edtEmail.getText().toString());
+                    } else {
+                        validEmail = false;
+                        edtEmail.setError(getString(R.string.TEXT_ERROR_INVALID_EMAIL));
+                    }
+                }
             }
         });
 

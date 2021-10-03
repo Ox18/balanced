@@ -86,10 +86,12 @@
             android:id="@+id/btnLogin"
             android:text="Ingresar" />
         <TextView
+            android:id="@+id/txtResetearPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:paddingTop="10dp"
+            android:textColor="#005ff9"
             android:text="Recuperar contraseña" />
         <LinearLayout
             android:layout_width="match_parent"

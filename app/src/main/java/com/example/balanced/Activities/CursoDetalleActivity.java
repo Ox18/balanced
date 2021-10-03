@@ -40,8 +40,10 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     private TextView txtCategory;
     private TextView txtState;
     private Button btnAction;
+    private Button btnVerCapacitacion;
     private TextView txtVolver;
     private TextView txtPriceAditional;
+    private TextView txtTime;
     private boolean adquired = false;
     private Course courseMetadata;
 
@@ -49,10 +51,10 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curso_detalle);
-
+        btnVerCapacitacion = findViewById(R.id.buttonVerCapacitacion);
         imageCourse = findViewById(R.id.imageCourse);
         txtDescription = findViewById(R.id.descriptionCourse);
-
+        txtTime = findViewById(R.id.txtTime);
         txtNombreDelCurso = findViewById(R.id.txtNombreDelCurso);
         txtNameProfesional = findViewById(R.id.txtNameProfesional);
         txtRate = findViewById(R.id.txtRate);
@@ -102,6 +104,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             adquired = false;
+                            btnVerCapacitacion.setVisibility(View.GONE);
                             btnAction.setText("Adquirir");
                             Toast.makeText(getBaseContext(), "El curso fue eliminado", Toast.LENGTH_SHORT).show();
                         }
@@ -110,36 +113,12 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     }
 
     public void LoadHeaderBar(){
-        String uid = GetID();
-        mDatabase
-                .child("Users")
-                .child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            User2 user = snapshot.getValue(User2.class);
-                            String roleUser = user.role;
-                            String roleUserValidate = "user";
-                            boolean validateUser = roleUserValidate.equals(roleUser);
-                            txtVolver.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    if(validateUser){
-                                        LoadLobby();
-                                    }else{
-                                        // es profesional
-                                    }
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+        txtVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoadLobby();
+            }
+        });
     }
 
     public void loadComponents(){
@@ -160,6 +139,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
                                 txtRequests.setText(course.getRequest());
                                 txtCategory.setText(course.category);
                                 txtPriceAditional.setText(course.priceAditional);
+                                txtTime.setText(course.time);
                                 courseMetadata = course;
                             }
                     }
@@ -188,7 +168,11 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
                             adquired = false;
                             btnAction.setText("Adquirir");
                         }
+                        if(adquired){
+                            btnVerCapacitacion.setVisibility(View.VISIBLE);
+                        }
                         btnAction.setVisibility(View.VISIBLE);
+
                     }
 
                     @Override

@@ -116,7 +116,7 @@ public class LobbyActivity extends ScreenCompatActivity {
     private void LoadMyCoursesPreview(){
         mDatabase
                 .child("Users")
-                .child("tIAlnVPIesXioHz9RjtRZ9Jl2fW2")
+                .child(GetID())
                 .child("Courses")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

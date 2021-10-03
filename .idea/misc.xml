@@ -11,9 +11,10 @@
         <entry key="app/src/main/res/drawable/layout_button.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_image_profile.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_input.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_course.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_course_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_curso_detalle.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_curso_detalle.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_detail_my_course.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_load.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_lobby.xml" value="0.25" />
