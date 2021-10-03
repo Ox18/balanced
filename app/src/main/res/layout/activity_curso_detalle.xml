@@ -26,7 +26,7 @@
             android:gravity="center"
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:text="Curso" />
+            android:text="Servicio" />
         <TextView
             android:id="@+id/txtGuardar"
             android:layout_width="wrap_content"

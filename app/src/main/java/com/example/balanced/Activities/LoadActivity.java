@@ -1,8 +1,11 @@
-package com.example.balanced;
+package com.example.balanced.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.balanced.R;
+import com.example.balanced.ScreenCompatActivity;
 
 public class LoadActivity extends ScreenCompatActivity {
 

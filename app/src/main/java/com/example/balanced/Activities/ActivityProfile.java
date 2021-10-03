@@ -28,6 +28,8 @@ public class ActivityProfile extends ScreenCompatActivity {
     private EditText edtDNI;
     private EditText edtPHONE;
     private Button btnCerrarSesion;
+    private Button btnDeleteAccount;
+    private User2 user = new User2();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class ActivityProfile extends ScreenCompatActivity {
         edtDNI = findViewById(R.id.edtDNI);
         edtPHONE = findViewById(R.id.edtPhone);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
 
         loadComponents();
 
@@ -51,6 +54,25 @@ public class ActivityProfile extends ScreenCompatActivity {
                 logout();
             }
         });
+
+        btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteMeAccount();
+            }
+        });
+
+        txtGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User2 userNewData = user;
+                userNewData.name = edtNAME.getText().toString();
+                userNewData.phone = edtPHONE.getText().toString();
+                userNewData.dni = edtPHONE.getText().toString();
+                updateMeAccount(userNewData);
+            }
+        });
+
     }
 
     public void loadComponents(){
@@ -61,6 +83,7 @@ public class ActivityProfile extends ScreenCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User2 user2 = snapshot.getValue(User2.class);
+                                user = user2;
                                 txtLogoLetter.setText(user2.getFirstLetter());
                                 edtNAME.setText(user2.name);
                                 edtCORREO.setText(user2.correo);

@@ -1,10 +1,12 @@
 package com.example.balanced.Activities;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.balanced.R;
 import com.example.balanced.ScreenCompatActivity;
@@ -46,7 +48,27 @@ public class MainActivity extends ScreenCompatActivity {
             public void onClick(View view) {
                 email = (String)edtEmail.getText().toString();
                 password = (String)edtPassword.getText().toString();
-                Login(email, password);
+
+                boolean validEmail = false;
+
+                if(edtEmail.getText().toString().isEmpty()) {
+                    validEmail = false;
+                    edtEmail.setError(getString(R.string.TEXT_ERROR_EMPTY_EMAIL));
+                }else {
+                    if (edtEmail.getText().toString().trim().matches(getString(R.string.TEXT_PATTERN_EMAIL))) {
+                        validEmail = true;
+                    } else {
+                        validEmail = false;
+                        edtEmail.setError(getString(R.string.TEXT_ERROR_INVALID_EMAIL));
+                    }
+                }
+                if(edtPassword.getText().toString().isEmpty()){
+                    edtPassword.setError(getString(R.string.TEXT_ERROR_EMPTY_PASSWORD));
+                }
+
+                if(validEmail && password.length() > 0){
+                    Login(email, password);
+                }
             }
         });
     }

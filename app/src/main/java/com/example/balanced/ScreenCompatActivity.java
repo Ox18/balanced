@@ -183,7 +183,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ScreenCompatActivity.this, "Se agrego el curso satisfactoriamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScreenCompatActivity.this, "Se agrego el servicio satisfactoriamente", Toast.LENGTH_SHORT).show();
                         finish();
                         startActivity(getIntent());
                     }
@@ -191,7 +191,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ScreenCompatActivity.this, "No se pudo agregar el curso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ScreenCompatActivity.this, "No se pudo agregar el servicio", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -199,5 +199,46 @@ public class ScreenCompatActivity extends AppCompatActivity {
     public void logout(){
         mAuth.signOut();
         LoadLogin();
+    }
+
+    public void deleteMeAccount(){
+        String uid = GetID();
+        mDatabase.child("Users")
+                .child(uid)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            logout();
+                        }
+                    }
+                });
+    }
+
+    public void updateMeAccount(User2 user){
+        String uid = GetID();
+        mDatabase.child("Users")
+                .child(uid)
+                .setValue(user.getMapData())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ScreenCompatActivity.this, "Se actualizaron tus datos", Toast.LENGTH_SHORT).show();
+                        RefreshActivity();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ScreenCompatActivity.this, "No se pudo actualizar tus datos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    public void RefreshActivity(){
+        finish();
+        startActivity(getIntent());
     }
 }

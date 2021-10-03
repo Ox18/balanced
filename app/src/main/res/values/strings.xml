@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">balanced</string>
+    <string name="TEXT_ERROR_LENGHT_DNI">El DNI solo debe contener 8 digitos</string>
+    <string name="TEXT_ERROR_EMPTY_DNI">Ingresa tu DNI</string>
+    <string name="TEXT_ERROR_EMPTY_NAME">Ingresa un nombre</string>
+    <string name="TEXT_ERROR_LENGHT_PHONE">El numero solo debe contener 9 números</string>
+    <string name="TEXT_ERROR_EMPTY_PHONE">Ingresa un telefono</string>
+    <string name="TEXT_ERROR_EMPTY_EMAIL">Ingresa un correo electronico</string>
+    <string name="TEXT_ERROR_INVALID_EMAIL">El correo es invalido</string>
+    <string name="TEXT_ERROR_EMPTY_PASSWORD">Introduzca una contraseña</string>
+    <string name="TEXT_PATTERN_EMAIL">[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+</string>
 </resources>

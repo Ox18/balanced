@@ -120,6 +120,7 @@
             android:orientation="vertical"
             android:gravity="bottom">
             <Button
+                android:id="@+id/btnDeleteAccount"
                 android:background="@drawable/layout_button_red"
                 android:textColor="#fff"
                 android:textAllCaps="false"

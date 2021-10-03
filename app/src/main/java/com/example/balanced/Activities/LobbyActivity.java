@@ -136,6 +136,7 @@ public class LobbyActivity extends ScreenCompatActivity {
         int count = 0;
             for (DataSnapshot postSnapshot:snapshot.getChildren()){
                 MyCoursePreview myCoursePreview = postSnapshot.getValue(MyCoursePreview.class);
+                myCoursePreview.id = postSnapshot.getKey();
                 myCoursePreviewArrayList.add(myCoursePreview);
                 count++;
             }

@@ -69,16 +69,79 @@ public class RegisterActivity extends ScreenCompatActivity {
                 phone = edtPhone.getText().toString();
                 dni = edtDNI.getText().toString();
 
-                Map<String, Object> map = new HashMap<>();
+                boolean correoValid = false;
+                boolean passwordValid = false;
+                boolean nombreValid = false;
+                boolean phoneValid = false;
+                boolean dniValid = false;
 
-                map.put("name", nombre.trim().replaceAll(" ", "-"));
-                map.put("phone", phone);
-                map.put("dni", dni);
-                map.put("correo", correo);
-                map.put("payment_active", false);
-                btnRegistar.setEnabled(false);
-                RegisterAccount(correo, password, map);
+                if(edtCorreo.getText().toString().isEmpty()) {
+                    correoValid = false;
+                    edtCorreo.setError(getString(R.string.TEXT_ERROR_EMPTY_EMAIL));
+                }else {
+                    if (edtCorreo.getText().toString().trim().matches(getString(R.string.TEXT_PATTERN_EMAIL))) {
+                        correoValid = true;
+                    } else {
+                        correoValid = false;
+                        edtCorreo.setError(getString(R.string.TEXT_ERROR_INVALID_EMAIL));
+                    }
+                }
+                if(edtPassword.getText().toString().isEmpty()){
+                    passwordValid = false;
+                    edtPassword.setError(getString(R.string.TEXT_ERROR_EMPTY_PASSWORD));
+                }else{
+                    passwordValid = true;
+                }
+
+                if(edtNombre.getText().toString().isEmpty()){
+                    nombreValid = false;
+                    edtNombre.setError(getString(R.string.TEXT_ERROR_EMPTY_NAME));
+                }else{
+                    nombreValid = true;
+                }
+
+                if(edtPhone.getText().toString().isEmpty()){
+                    phoneValid = false;
+                    edtPhone.setError(getString(R.string.TEXT_ERROR_EMPTY_NAME));
+                }
+                else if(edtPhone.getText().toString().length() != 9){
+                    phoneValid = false;
+                    edtPhone.setError(getString(R.string.TEXT_ERROR_LENGHT_PHONE));
+                }
+                else{
+                    phoneValid = true;
+                }
+
+                if(edtDNI.getText().toString().isEmpty()){
+                    dniValid = false;
+                    edtDNI.setError(getString(R.string.TEXT_ERROR_EMPTY_DNI));
+                }
+                else if(edtDNI.getText().toString().length() != 8){
+                    dniValid = false;
+                    edtDNI.setError(getString(R.string.TEXT_ERROR_LENGHT_DNI));
+                }
+                else{
+                    dniValid = true;
+                }
+
+                if(correoValid && passwordValid && nombreValid && phoneValid && dniValid){
+                    SendRegisterAccount();
+                }
+
             }
         });
+    }
+
+    private void SendRegisterAccount(){
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("name", nombre.trim().replaceAll(" ", "-"));
+        map.put("phone", phone);
+        map.put("dni", dni);
+        map.put("correo", correo);
+        map.put("payment_active", false);
+        btnRegistar.setEnabled(false);
+        RegisterAccount(correo, password, map);
     }
 }

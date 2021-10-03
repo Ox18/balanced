@@ -84,13 +84,12 @@
             android:id="@+id/txtAlertNotServices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="Uste no dispone de servicios actualmente"
             android:textAlignment="center" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerPreviewMyCourses"
-            android:layout_marginTop="22dp"
             android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="100dp"

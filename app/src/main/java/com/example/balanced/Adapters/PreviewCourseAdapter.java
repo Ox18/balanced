@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -78,6 +79,7 @@ public class PreviewCourseAdapter extends RecyclerView.Adapter<PreviewCourseAdap
         private TextView txtNameProfesional;
         private TextView txtStatusCourse;
         private LinearLayout LinearLayoutCourse;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();

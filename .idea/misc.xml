@@ -18,10 +18,10 @@
         <entry key="app/src/main/res/layout/activity_load.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_lobby.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_lobby_profesional.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_preview_course.xml" value="0.335" />
