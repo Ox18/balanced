@@ -14,32 +14,26 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ActivityAddCourse"
+            android:name=".LoadActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.CursoDetalleActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityProfile"
-            android:exported="true" />
-        <activity
-            android:name=".ActivityCommentsCourse"
-            android:exported="true" />
-        <activity
-            android:name=".ActivityLobbyProfesional"
-            android:exported="true" />
-        <activity
-            android:name=".Activities.DetailMyCourse"
+            android:name=".Activities.ActivityProfile"
             android:exported="true" />
         <activity android:name=".Activities.LobbyActivity" />
         <activity android:name=".Activities.PaymentActivity" />
         <activity android:name=".Activities.RegisterActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -7,10 +7,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.balanced.Activities.ActivityProfile;
+import com.example.balanced.Activities.CursoDetalleActivity;
 import com.example.balanced.Activities.LobbyActivity;
 import com.example.balanced.Activities.MainActivity;
 import com.example.balanced.Activities.PaymentActivity;
 import com.example.balanced.Activities.RegisterActivity;
+import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.User2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,7 +35,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
     public DatabaseReference mDatabase;
     public Gson gson;
-    public User2 userInfo;
+    public String FirstLetter = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,19 @@ public class ScreenCompatActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         gson = new Gson();
     }
-    
+
+    public void LoadCursoDetaller(String id){
+        Intent intent = new Intent(this, CursoDetalleActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+        finish();
+    }
+
+    public void LoadProfile(){
+        startActivity(new Intent(this, ActivityProfile.class));
+        finish();
+    }
+
     public void LoadLobby(){
         startActivity(new Intent(this, LobbyActivity.class));
         finish();
@@ -86,6 +101,10 @@ public class ScreenCompatActivity extends AppCompatActivity {
                 });
     }
 
+    public String GetID(){
+        return mAuth.getCurrentUser().getUid();
+    }
+
     public void LoadThePayment(){
         String id = mAuth.getCurrentUser().getUid();
 
@@ -114,6 +133,8 @@ public class ScreenCompatActivity extends AppCompatActivity {
     public void VerifyExistAuth(){
         if(mAuth.getCurrentUser() != null){
             LoadThePayment();
+        }else{
+            LoadLogin();
         }
     }
 
@@ -151,5 +172,32 @@ public class ScreenCompatActivity extends AppCompatActivity {
                         Toast.makeText(ScreenCompatActivity.this, "No se pudo completar el registro", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void AddCourseForMe(String courseID, Course course){
+        String uid = GetID();
+        mDatabase.child("Users").child(uid)
+                .child("Courses")
+                .child(courseID)
+                .setValue(course.getMapData())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ScreenCompatActivity.this, "Se agrego el curso satisfactoriamente", Toast.LENGTH_SHORT).show();
+                        finish();
+                        startActivity(getIntent());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ScreenCompatActivity.this, "No se pudo agregar el curso", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void logout(){
+        mAuth.signOut();
+        LoadLogin();
     }
 }

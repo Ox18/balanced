@@ -50,10 +50,4 @@ public class MainActivity extends ScreenCompatActivity {
             }
         });
     }
-
-    @Override
-    protected  void onStart(){
-        super.onStart();
-        VerifyExistAuth();
-    }
 }

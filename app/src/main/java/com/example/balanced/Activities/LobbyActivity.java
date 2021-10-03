@@ -1,8 +1,9 @@
 package com.example.balanced.Activities;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,83 +13,62 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.balanced.Adapters.PreviewCourseAdapter;
+import com.example.balanced.Adapters.PreviewMyCoursesAdapter;
 import com.example.balanced.Entity.Course;
+import com.example.balanced.Entity.ListMyCoursesPreview;
+import com.example.balanced.Entity.MyCoursePreview;
 import com.example.balanced.Entity.User2;
 import com.example.balanced.R;
-import com.example.balanced.Recyclers.ListMyCoursesAdapter;
 import com.example.balanced.ScreenCompatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Key;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LobbyActivity extends ScreenCompatActivity {
-
-    private EditText edtSearchMyCourse;
+    private LinearLayout circleProfile;
     private RecyclerView recyclerView;
-    private ListMyCoursesAdapter listMyCoursesAdapter;
-    private Button btnSearchByName;
-    ArrayList<Course> courses;
-    ArrayList<Course> coursesInit;
-    LinearLayout profileCircle;
-    TextView txtWelcome;
-    TextView txtLogoLetter;
-
-    String userID;
+    private PreviewCourseAdapter previewCourseAdapter = new PreviewCourseAdapter();
+    private ArrayList<Course> courseArrayList = new ArrayList<>();
+    private ArrayList<MyCoursePreview> myCoursePreviewArrayList = new ArrayList<>();
+    private RecyclerView recyclerViewMyCourses;
+    private PreviewMyCoursesAdapter previewMyCoursesAdapter = new PreviewMyCoursesAdapter();
+    private ListMyCoursesPreview listMyCoursesPreview = new ListMyCoursesPreview();
+    private TextView logoletter;
+    private TextView txtWelcome;
+    private TextView txtAlertNotServices;
+    private User2 user2;
+    private EditText edtSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
-        btnSearchByName = (Button)findViewById(R.id.btnSearchByName);
-        courses = new ArrayList<>();
-        coursesInit = new ArrayList<>();
-        edtSearchMyCourse = (EditText)findViewById(R.id.edtSearchCourses);
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerViewMisCursos);
-        listMyCoursesAdapter = new ListMyCoursesAdapter();
-        recyclerView.setAdapter(listMyCoursesAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-
-
-        profileCircle = (LinearLayout)findViewById(R.id.profile_circle);
-        profileCircle.setOnClickListener(new View.OnClickListener() {
+        LoadAdapter();
+        edtSearch = findViewById(R.id.editTextSearchByName);
+        logoletter = findViewById(R.id.logoLetter);
+        circleProfile = findViewById(R.id.profile_circle);
+        txtWelcome = findViewById(R.id.txtWelcome);
+        txtAlertNotServices = findViewById(R.id.txtAlertNotServices);
+        circleProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignOut();
+                LoadProfile();
             }
         });
 
-        txtWelcome = (TextView)findViewById(R.id.txtWelcome);
-        txtLogoLetter = (TextView)findViewById(R.id.logoLetter);
-
-        userID = mAuth.getCurrentUser().getUid();
-
-        LoadProfile();
-        LoadMyCourses();
-
-        btnSearchByName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                orderMyCoursesByName();
-            }
-        });
-    }
-
-    public void LoadProfile(){
         mDatabase.child("Users")
-                .child(userID)
+                .child(GetID())
                 .addListenerForSingleValueEvent(
                         new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                User2 user = snapshot.getValue(User2.class);
-                                String firstWord = user.name.split(" ")[0];
-                                txtWelcome.setText("Bienvenido, " + firstWord);
-                                txtLogoLetter.setText(firstWord.substring(0, 1));
+                                User2 user2 = snapshot.getValue(User2.class);
+                                logoletter.setText(user2.getFirstLetter());
+                                txtWelcome.setText("Bienvenido, " + user2.getFirstName());
                             }
 
                             @Override
@@ -99,15 +79,31 @@ public class LobbyActivity extends ScreenCompatActivity {
                 );
     }
 
-    public void LoadMyCourses(){
-        mDatabase.child("Users")
-                .child(userID)
+    private void LoadAdapter(){
+       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerPreviewCourses);
+        recyclerView.setAdapter(previewCourseAdapter);
+       recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        recyclerViewMyCourses = (RecyclerView)findViewById(R.id.recyclerPreviewMyCourses);
+        recyclerViewMyCourses.setAdapter(previewMyCoursesAdapter);
+        recyclerViewMyCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+
+        LoadCourses();
+        LoadMyCoursesPreview();
+    }
+
+    private void LoadCourses(){
+        mDatabase
                 .child("Courses")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        fetchMyCourses(snapshot);
-                        listMyCoursesAdapter.adicionarListaCourses(courses);
+                        FetchCourses(snapshot);
+                        previewCourseAdapter.adicionarLista(courseArrayList);
                     }
 
                     @Override
@@ -117,30 +113,44 @@ public class LobbyActivity extends ScreenCompatActivity {
                 });
     }
 
-    private void fetchMyCourses(DataSnapshot snapshot){
-        for(DataSnapshot postSnapshot:snapshot.getChildren()){
-            Course course = postSnapshot.getValue(Course.class);
-            courses.add(course);
-            coursesInit.add(course);
-        }
+    private void LoadMyCoursesPreview(){
+        mDatabase
+                .child("Users")
+                .child("tIAlnVPIesXioHz9RjtRZ9Jl2fW2")
+                .child("Courses")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        FetchMyCoursesPreview(snapshot);
+                        previewMyCoursesAdapter.adicionarLista(myCoursePreviewArrayList);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
-    private void orderMyCoursesByName(){
-        String searchName = edtSearchMyCourse.getText().toString();
-
-        if(searchName.length() == 0){
-            listMyCoursesAdapter.adicionarListaCourses(coursesInit);
-        }else{
-            ArrayList<Course> filtroCursos = new ArrayList<>();
-            for(Course courseSeleccionado: coursesInit){
-                String nameSeleccionado = courseSeleccionado.getName().toLowerCase();
-                String nameSearchLower = searchName.toLowerCase();
-                if(nameSeleccionado.startsWith(nameSearchLower)){
-                    filtroCursos.add(courseSeleccionado);
-                }
+    private void FetchMyCoursesPreview(DataSnapshot snapshot){
+        int count = 0;
+            for (DataSnapshot postSnapshot:snapshot.getChildren()){
+                MyCoursePreview myCoursePreview = postSnapshot.getValue(MyCoursePreview.class);
+                myCoursePreviewArrayList.add(myCoursePreview);
+                count++;
             }
-            listMyCoursesAdapter.adicionarListaCourses(filtroCursos);
-        }
-
+            if(count == 0){
+                txtAlertNotServices.setVisibility(View.VISIBLE);
+            }
+            listMyCoursesPreview.setList(myCoursePreviewArrayList);
     }
+
+    private void FetchCourses(DataSnapshot snapshot){
+            for (DataSnapshot postSnapshot:snapshot.getChildren()){
+                Course course = postSnapshot.getValue(Course.class);
+                course.id = postSnapshot.getKey();
+                courseArrayList.add(course);
+            }
+    }
+
 }

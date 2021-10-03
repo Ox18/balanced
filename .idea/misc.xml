@@ -5,14 +5,27 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable-v24/layout_bg_input.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/layout_button_red.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_button.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_image_profile.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_input.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/layout/activity_course.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_course_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_curso_detalle.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_detail_my_course.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_lobby.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_load.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_lobby.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_lobby_profesional.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_payment.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/card_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_course.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/card_preview_course.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/preview_card_my_course.xml" value="0.375" />
       </map>
     </option>
   </component>

@@ -1,58 +1,45 @@
 package com.example.balanced.Entity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Course {
-    private String name;
-    private double aditionalPrice;
-    private String photoURI;
-    private String id;
-    private String profesionalId;
-    private String description;
+    private DatabaseReference mDatabase;
+    public String name;
+    public String image;
+    public String rate;
+    public String priceAditional;
+    public String time;
+    public String profesionalName;
+    public String state;
+    public String id;
+    public String description;
+    public int request;
+    public String category;
 
-    public double getAditionalPrice() {
-        return aditionalPrice;
+    public Course(){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void setAditionalPrice(double aditionalPrice) {
-        this.aditionalPrice = aditionalPrice;
+    public String getRequest(){
+        return Integer.toString(request);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhotoURI() {
-        return photoURI;
-    }
-
-    public void setPhotoURI(String photoURI) {
-        this.photoURI = photoURI;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getProfesionalId() {
-        return profesionalId;
-    }
-
-    public void setProfesionalId(String profesionalId) {
-        this.profesionalId = profesionalId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Map<String, Object> getMapData(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("image", image);
+        map.put("rate", rate);
+        map.put("priceAditional", priceAditional);
+        map.put("time", time);
+        map.put("profesionalName", profesionalName);
+        map.put("state", state);
+        map.put("description", description);
+        map.put("request", request);
+        map.put("category", category);
+        return map;
     }
 }

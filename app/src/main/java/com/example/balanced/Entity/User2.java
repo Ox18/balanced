@@ -10,8 +10,20 @@ public class User2{
     public String correo;
     public String name;
     public String dni;
+    public String role;
 
     public User2(){
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public String getFirstLetter(){
+        char s = this.name.charAt(0);
+        String letter = Character.toString(s);
+        return letter.toUpperCase();
+    }
+
+    public String getFirstName(){
+        return this.name.split(" ")[0];
     }
 }
