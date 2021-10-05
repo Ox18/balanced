@@ -88,7 +88,12 @@ public class ActivityProfile extends ScreenCompatActivity {
         txtVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoadLobby();
+                if(user.isProfessional()){
+                    LoadLobbyProfesional();
+                }
+                if(user.isUser()){
+                    LoadLobby();
+                }
             }
         });
         mDatabase.child("Users")

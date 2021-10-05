@@ -40,7 +40,6 @@ public class LobbyActivity extends ScreenCompatActivity {
     private TextView logoletter;
     private TextView txtWelcome;
     private TextView txtAlertNotServices;
-    private User2 user2;
     private EditText edtSearch;
 
     @Override

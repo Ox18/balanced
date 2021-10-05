@@ -46,6 +46,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     private TextView txtTime;
     private boolean adquired = false;
     private Course courseMetadata;
+    private User2 user = new User2();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +69,28 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             cursoID = extras.getString("id");
+
         }
-        loadComponents();
-        LoadButton();
-        LoadHeaderBar();
-        LoadEventToButtonAction();
+
+        mDatabase.child("Users")
+                .child(GetID())
+                .addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                user = snapshot.getValue(User2.class);
+                                loadComponents();
+                                LoadButton();
+                                LoadHeaderBar();
+                                LoadEventToButtonAction();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        }
+                );
     }
 
     public void LoadEventToButtonAction() {
@@ -116,7 +134,13 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
         txtVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoadLobby();
+                if(user.isUser()){
+                    LoadLobby();
+                }
+
+                if(user.isProfessional()){
+                    LoadLobbyProfesional();
+                }
             }
         });
     }

@@ -41,5 +41,12 @@ public class User2{
         return map;
     }
 
+    public boolean isProfessional(){
+        return role.equals("professional");
+    }
+
+    public boolean isUser(){
+        return role.equals("user");
+    }
 
 }

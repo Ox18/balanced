@@ -11,6 +11,7 @@ import com.example.balanced.Activities.ActivityProfile;
 import com.example.balanced.Activities.ChangePasswordActivity;
 import com.example.balanced.Activities.CursoDetalleActivity;
 import com.example.balanced.Activities.LobbyActivity;
+import com.example.balanced.Activities.LobbyProfesionalActivity;
 import com.example.balanced.Activities.MainActivity;
 import com.example.balanced.Activities.PaymentActivity;
 import com.example.balanced.Activities.RegisterActivity;
@@ -44,6 +45,11 @@ public class ScreenCompatActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         gson = new Gson();
+    }
+
+    public void LoadLobbyProfesional(){
+        startActivity(new Intent(this, LobbyProfesionalActivity.class));
+        finish();
     }
 
     public void LoadCursoDetaller(String id){
@@ -122,7 +128,12 @@ public class ScreenCompatActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User2 user2 = snapshot.getValue(User2.class);
                                 if(user2.payment_active){
-                                    LoadLobby();
+                                    if(user2.isProfessional()){
+                                        LoadLobbyProfesional();
+                                    }
+                                    if(user2.isUser()){
+                                        LoadLobby();
+                                    }
                                 }else{
                                     LoadPayment();
                                 }

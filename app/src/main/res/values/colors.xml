@@ -6,4 +6,5 @@
     <color name="COLOR_TEXT_SUPER">#5bed77</color>
     <color name="COLOR_TEXT_NORMAL">#edad5b</color>
     <color name="COLOR_TEXT_BAD">#ed5b5b</color>
+    <color name="PRIMARY_COLOR">#005ff9</color>
 </resources>

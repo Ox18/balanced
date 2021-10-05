@@ -17,6 +17,7 @@ public class Course {
     public String state;
     public String id;
     public String description;
+    public String profesionalID;
     public int request;
     public String category;
 
@@ -40,6 +41,7 @@ public class Course {
         map.put("description", description);
         map.put("request", request);
         map.put("category", category);
+        map.put("profesionalID", profesionalID);
         return map;
     }
 }

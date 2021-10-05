@@ -27,6 +27,7 @@
             android:textColor="#000"
             android:text="Ingresa tus\ndatos para poder registrarte" />
         <TextView
+            android:textColor="#000"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
@@ -120,6 +121,7 @@
             android:layout_marginTop="22dp"
             >
             <TextView
+                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ya tienes cuenta?"
