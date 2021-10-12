@@ -59,6 +59,24 @@ public class LobbyActivity extends ScreenCompatActivity {
             }
         });
 
+
+        /**
+         * @Description Actión asignada al @EditText para buscar mis cursos por sus nombre
+         */
+        edtSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                switch(keyCode){
+                    case KeyEvent.KEYCODE_ENTER:
+                        Toast.makeText(getBaseContext(), "Apreto enter en la busqueda", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
+
         mDatabase.child("Users")
                 .child(GetID())
                 .addListenerForSingleValueEvent(
@@ -93,6 +111,9 @@ public class LobbyActivity extends ScreenCompatActivity {
 
         LoadCourses();
         LoadMyCoursesPreview();
+
+
+
     }
 
     private void LoadCourses(){

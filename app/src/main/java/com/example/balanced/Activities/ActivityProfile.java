@@ -77,7 +77,7 @@ public class ActivityProfile extends ScreenCompatActivity {
                 User2 userNewData = user;
                 userNewData.name = edtNAME.getText().toString();
                 userNewData.phone = edtPHONE.getText().toString();
-                userNewData.dni = edtPHONE.getText().toString();
+                userNewData.dni = edtDNI.getText().toString();
                 updateMeAccount(userNewData);
             }
         });

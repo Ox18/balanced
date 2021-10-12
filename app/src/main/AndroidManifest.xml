@@ -14,6 +14,9 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activities.RateActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.LobbyProfesionalActivity"
             android:exported="true" />
         <activity

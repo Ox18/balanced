@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.balanced.Entity.User2;
 import com.example.balanced.R;
 import com.example.balanced.ScreenCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -134,14 +135,14 @@ public class RegisterActivity extends ScreenCompatActivity {
 
     private void SendRegisterAccount(){
 
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("name", nombre.trim().replaceAll(" ", "-"));
-        map.put("phone", phone);
-        map.put("dni", dni);
-        map.put("correo", correo);
-        map.put("payment_active", false);
+        User2 user = new User2();
+        user.name = nombre;
+        user.phone = phone;
+        user.dni = dni;
+        user.correo = correo;
+        user.payment_active = false;
+        user.role = "user";
         btnRegistar.setEnabled(false);
-        RegisterAccount(correo, password, map);
+        RegisterAccount(correo, password, user);
     }
 }

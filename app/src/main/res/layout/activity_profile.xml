@@ -121,7 +121,7 @@
             android:gravity="bottom">
             <Button
                 android:id="@+id/btnChangePassword"
-                android:background="@drawable/layout_button_red"
+                android:background="@drawable/layout_button_black"
                 android:textColor="#fff"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"

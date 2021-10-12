@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +65,10 @@ public class PreviewMyCoursesAdapter extends RecyclerView.Adapter<PreviewMyCours
     public void adicionarLista(ArrayList<MyCoursePreview> MyCoursesPreview){
         dataset.addAll(MyCoursesPreview);
         notifyDataSetChanged();
+    }
+
+    public void SortByName(String name){
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

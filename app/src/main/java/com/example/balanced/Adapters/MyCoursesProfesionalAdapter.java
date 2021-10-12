@@ -69,7 +69,7 @@ public class MyCoursesProfesionalAdapter extends RecyclerView.Adapter<MyCoursesP
     public void Load(DatabaseReference mDatabase, String uid){
         mDatabase
                 .child("Courses")
-                .orderByChild("professionalID")
+                .orderByChild("profesionalID")
                 .equalTo(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -95,6 +95,7 @@ public class MyCoursesProfesionalAdapter extends RecyclerView.Adapter<MyCoursesP
     }
 
     private void adicionarLista(ArrayList<Course> courses){
+        dataset.clear();
         dataset.addAll(courses);
         notifyDataSetChanged();
     }

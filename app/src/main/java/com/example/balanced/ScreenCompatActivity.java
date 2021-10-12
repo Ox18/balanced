@@ -155,7 +155,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
         }
     }
 
-    public void RegisterAccount(String email, String password, Map<String, Object> userData){
+    public void RegisterAccount(String email, String password, User2 userData){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -165,7 +165,7 @@ public class ScreenCompatActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     String id = mAuth.getCurrentUser().getUid();
-                                    AddUser(id, userData);
+                                    AddUser(id, userData.getMapData());
                                 }
                             });
                         }
@@ -174,12 +174,12 @@ public class ScreenCompatActivity extends AppCompatActivity {
     }
 
     public void AddUser(String uid, Map<String, Object> userData){
+        userData.put("role", "user");
         mDatabase.child("Users").child(uid)
                 .setValue(userData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(ScreenCompatActivity.this, "Inicia sesion nuevamnete", Toast.LENGTH_SHORT).show();
                         LoadPayment();
                     }
                 })

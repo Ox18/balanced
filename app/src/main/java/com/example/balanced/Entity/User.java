@@ -66,6 +66,7 @@ public class User {
         map.put("dni", getDni());
         map.put("correo", getCorreo());
         map.put("payment_active", getPayment_active());
+        map.put("role", "user");
         return map;
     }
 }
