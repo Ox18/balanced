@@ -24,9 +24,6 @@ public class MainActivity extends ScreenCompatActivity {
     private String email = "";
     private String password = "";
 
-    private FirebaseAuth mAuth;
-    DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

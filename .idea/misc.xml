@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable-v24/layout_bg_input.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/layout_button_black.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable-v24/layout_button_red.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable-v24/layout_button_white.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/empty_tall_divider.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_button.xml" value="0.13802083333333334" />
@@ -23,7 +25,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_rate.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/layout/activity_rate.xml" value="0.23025210084033612" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_comment.xml" value="0.335" />

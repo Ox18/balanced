@@ -1,10 +1,13 @@
 package com.example.balanced.ViewModel;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.balanced.Entity.Comment;
 import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.CourseMyRateEntity;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -13,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -34,27 +38,32 @@ public class CourseMyRateViewModel extends ViewModel {
     public void load(String courseID){
         String userID = mAuth.getUid();
 
-        mDatabase
+        DatabaseReference myRateRef = mDatabase
                 .child("Courses")
                 .child(courseID)
                 .child("Rates")
-                .child(userID)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            CourseMyRateEntity courseMyRateEntity = snapshot.getValue(CourseMyRateEntity.class);
-                            resultado.setValue(courseMyRateEntity.getRatingInFloat());
-                        }else{
-                            resultado.setValue(Float.parseFloat("0.0"));
-                        }
-                    }
+                .child(userID);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        resultado.setValue(Float.parseFloat("0.0"));
-                    }
-                });
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    CourseMyRateEntity courseMyRateEntity = snapshot.getValue(CourseMyRateEntity.class);
+                    resultado.setValue(courseMyRateEntity.getRatingInFloat());
+
+                    updateRateOnListener(courseMyRateEntity.rating, courseID, userID);
+                }else{
+                    resultado.setValue(Float.parseFloat("0.0"));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        myRateRef.addValueEventListener(eventListener);
     }
 
     public void changeRate(float rating, String courseID) {
@@ -71,9 +80,40 @@ public class CourseMyRateViewModel extends ViewModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        load(courseID);
                     }
                 });
 
+    }
+
+    /**
+     * Actualiza todos los comentarios que le pertenecen al usuario
+     * con el rating actual
+     * @param rating rating actual
+     * @param courseID id del curso al que pertenece al rating
+     * @param userID id del usuario al que pertenece el rating
+     */
+    private void updateRateOnListener(String rating, String courseID, String userID){
+        Query query =  mDatabase
+                .child("Courses")
+                .child(courseID)
+                .child("Comments")
+                .orderByChild("userID")
+                .equalTo(userID);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap: snapshot.getChildren()){
+                    Comment comment = snap.getValue(Comment.class);
+                    comment.rating = rating;
+                    snap.getRef().updateChildren(comment.getMapData());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

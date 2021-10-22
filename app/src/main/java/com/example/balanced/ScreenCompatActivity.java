@@ -1,6 +1,8 @@
 package com.example.balanced;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -35,8 +37,6 @@ public class ScreenCompatActivity extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
     public DatabaseReference mDatabase;
-    public String FirstLetter = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +124,14 @@ public class ScreenCompatActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User2 user2 = snapshot.getValue(User2.class);
+
+                                SharedPreferences preferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
+
+                                String name =  user2.name;
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("name", name);
+                                editor.apply();
+
                                 if(user2.payment_active){
                                     if(user2.isProfessional()){
                                         LoadLobbyProfesional();

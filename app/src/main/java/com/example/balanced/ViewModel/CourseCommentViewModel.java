@@ -1,5 +1,8 @@
 package com.example.balanced.ViewModel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,36 +37,44 @@ public class CourseCommentViewModel extends ViewModel {
     public LiveData<ArrayList<Comment>> getResultado(){ return resultado; }
 
     public void Load(String courseID){
-        mDatabase
+
+        DatabaseReference commentRef = mDatabase
                 .child("Courses")
                 .child(courseID)
-                .child("Comments")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            ArrayList<Comment> listCommentClean = new ArrayList<>();
-                            for (DataSnapshot commentSnapShot:snapshot.getChildren()){
-                                Comment comment = commentSnapShot.getValue(Comment.class);
-                                listCommentClean.add(comment);
-                            }
-                            resultado.setValue(listCommentClean);
-                        }
-                    }
+                .child("Comments");
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
 
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Comment> listCommentClean = new ArrayList<>();
+                if(snapshot.exists()){
+                    for (DataSnapshot commentSnapShot:snapshot.getChildren()){
+                        Comment comment = commentSnapShot.getValue(Comment.class);
+                        comment.id = commentSnapShot.getKey();
+                        listCommentClean.add(comment);
                     }
-                });
+                    resultado.setValue(listCommentClean);
+                }else{
+                    resultado.setValue(listCommentClean);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        commentRef.addValueEventListener(eventListener);
     }
 
-    public void PushComment(String courseID, float rating, String comentario){
+    public void PushComment(String courseID, float rating, String comentario, String name){
         String userID = mAuth.getUid();
 
         Comment comment = new Comment();
         comment.rating = Float.toString(rating);
-        comment.author = "Wilmer Delgado";
+        comment.author = name;
         comment.userID = userID;
         comment.comment = comentario;
         String key = mDatabase.child("Courses").child(courseID).child("Comments").push().getKey();
@@ -76,7 +87,6 @@ public class CourseCommentViewModel extends ViewModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Load(courseID);
                     }
                 });
     }
