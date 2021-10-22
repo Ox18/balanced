@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     tools:context=".Activities.RateActivity">
+
     <LinearLayout
         android:background="#ffffff"
         android:layout_width="match_parent"
@@ -36,19 +37,115 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:padding="10dp"
         android:orientation="vertical">
-        <RatingBar
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_bar"
-            android:numStars="5"
-            android:stepSize="0.5" />
-        <Button
-            android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:text="Curso" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_name_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="true"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="28dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:text="Nombre del curso" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                android:id="@+id/nameCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="28dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:text="Nombre del curso" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submit"
-            android:text="Enviar" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:theme="@style/RatingBar"
+                android:text="Tu puntaje es" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_ratin_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="true"
+                >
+                <RatingBar
+                    android:numStars="5"
+                    android:isIndicator="false"
+                    android:stepSize="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:visibility="gone"
+                android:numStars="5"
+                android:isIndicator="false"
+                android:stepSize="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/editComentario"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent" />
+                <Button
+                    android:id="@+id/btnComentario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comentar" />
+            </LinearLayout>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.1mm"
+            android:orientation="vertical"
+            android:background="#d8dee4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerPreviewMyCourses"
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/preview_card_my_course" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -26,12 +26,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class PreviewMyCoursesAdapter extends RecyclerView.Adapter<PreviewMyCoursesAdapter.ViewHolder> {
-    private ArrayList<MyCoursePreview> dataset;
+    private ArrayList<MyCoursePreview> dataset, initialDataSet;
     private Context context;
 
     public PreviewMyCoursesAdapter(){
         this.context = context;
         dataset = new ArrayList<>();
+        initialDataSet = new ArrayList<>();
     }
 
     @NonNull
@@ -64,12 +65,32 @@ public class PreviewMyCoursesAdapter extends RecyclerView.Adapter<PreviewMyCours
 
     public void adicionarLista(ArrayList<MyCoursePreview> MyCoursesPreview){
         dataset.addAll(MyCoursesPreview);
+        initialDataSet.addAll(MyCoursesPreview);
         notifyDataSetChanged();
     }
 
     public void SortByName(String name){
-
+        dataset.clear();
+        if(name.length() == 0){
+            dataset.addAll(initialDataSet);
+        }else{
+            dataset.addAll(getMyCoursesByName(name));
+        }
+        notifyDataSetChanged();
     }
+
+    public ArrayList<MyCoursePreview> getMyCoursesByName(String name){
+        ArrayList<MyCoursePreview> myNewListCourses = new ArrayList<>();
+        for(MyCoursePreview mycourse: initialDataSet){
+            String mycourseName = mycourse.name.toUpperCase();
+            String mycourseNameFind = name.toUpperCase();
+            if(mycourseName.startsWith(mycourseNameFind)){
+                myNewListCourses.add(mycourse);
+            }
+        }
+        return myNewListCourses;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         Context context;

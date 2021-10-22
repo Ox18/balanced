@@ -112,14 +112,18 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
-        Gson g = new Gson();
+
         String id = mAuth.getCurrentUser().getUid();
+
+        Gson g = new Gson();
+
         DatabaseReference docRef = mDatabase.child("Users").child(id);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+
+        docRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 user = g.fromJson(dataSnapshot.getValue().toString(), User.class);
-                txtWelcome.setText("Hola, " + user.getName());
             }
         });
 

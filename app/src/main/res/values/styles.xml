@@ -11,4 +11,17 @@
     <style name="DialogBasicCustomizable" parent="Theme.AppCompat.Light.Dialog.Alert">
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#000</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+    <style name="customRatingBar"
+        parent="android:style/Widget.Material.RatingBar.Small">
+    </style>
+
+    <style name="MyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:minHeight">15dp</item>
+        <item name="android:maxHeight">15dp</item>
+    </style>
+
 </resources>

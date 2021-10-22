@@ -28,7 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.util.Map;
 
@@ -36,7 +35,6 @@ public class ScreenCompatActivity extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
     public DatabaseReference mDatabase;
-    public Gson gson;
     public String FirstLetter = "";
 
     @Override
@@ -44,7 +42,6 @@ public class ScreenCompatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        gson = new Gson();
     }
 
     public void LoadLobbyProfesional(){

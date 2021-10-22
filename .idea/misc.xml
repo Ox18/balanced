@@ -23,9 +23,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_rate.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_rate.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_category.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/card_comment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_preview_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/content_lobby_profesional.xml" value="0.375" />

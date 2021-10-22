@@ -34,8 +34,10 @@ public class LobbyActivity extends ScreenCompatActivity {
     private PreviewCourseAdapter previewCourseAdapter = new PreviewCourseAdapter();
     private ArrayList<Course> courseArrayList = new ArrayList<>();
     private ArrayList<MyCoursePreview> myCoursePreviewArrayList = new ArrayList<>();
+
     private RecyclerView recyclerViewMyCourses;
     private PreviewMyCoursesAdapter previewMyCoursesAdapter = new PreviewMyCoursesAdapter();
+
     private ListMyCoursesPreview listMyCoursesPreview = new ListMyCoursesPreview();
     private TextView logoletter;
     private TextView txtWelcome;
@@ -66,9 +68,10 @@ public class LobbyActivity extends ScreenCompatActivity {
         edtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                switch(keyCode){
+                switch (keyCode) {
                     case KeyEvent.KEYCODE_ENTER:
-                        Toast.makeText(getBaseContext(), "Apreto enter en la busqueda", Toast.LENGTH_SHORT).show();
+                        String searchText = edtSearch.getText().toString();
+                        previewMyCoursesAdapter.SortByName(searchText);
                         return true;
                     default:
                         break;
@@ -96,12 +99,13 @@ public class LobbyActivity extends ScreenCompatActivity {
                 );
     }
 
+
     private void LoadAdapter(){
        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerPreviewCourses);
         recyclerView.setAdapter(previewCourseAdapter);
-       recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         recyclerViewMyCourses = (RecyclerView)findViewById(R.id.recyclerPreviewMyCourses);
