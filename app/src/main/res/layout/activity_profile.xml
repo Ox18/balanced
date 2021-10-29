@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/COLOR_WHITE"
     tools:context=".Activities.ActivityProfile">
     <LinearLayout
-        android:background="#ffffff"
+        android:background="@color/COLOR_WHITE"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
@@ -69,21 +70,21 @@
             android:id="@+id/edtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:height="50dp"
-            android:background="@drawable/layout_input"
+            android:background="@drawable/box_grey_light"
             android:hint="Nombres"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="#B1BCBE"
-            android:layout_marginBottom="10dp"
             android:textSize="14dp" />
+
         <EditText
-            android:editable="false"
             android:id="@+id/edtCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="50dp"
-            android:background="@drawable/layout_input"
+            android:background="@drawable/box_grey_light"
             android:hint="Correo"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -95,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="50dp"
-            android:background="@drawable/layout_input"
+            android:background="@drawable/box_grey_light"
             android:hint="DNI  "
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -107,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="50dp"
-            android:background="@drawable/layout_input"
+            android:background="@drawable/box_grey_light"
             android:hint="PHONE"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -121,7 +122,7 @@
             android:gravity="bottom">
             <Button
                 android:id="@+id/btnChangePassword"
-                android:background="@drawable/layout_button_black"
+                android:background="@drawable/box_blue"
                 android:textColor="#fff"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"
@@ -131,7 +132,7 @@
             <Button
                 android:layout_marginTop="10dp"
                 android:id="@+id/btnDeleteAccount"
-                android:background="@drawable/layout_button_red"
+                android:background="@drawable/box_red"
                 android:textColor="#fff"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"
@@ -141,7 +142,7 @@
             <Button
                 android:id="@+id/btnCerrarSesion"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/layout_button"
+                android:background="@drawable/box_black"
                 android:textColor="#fff"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"

@@ -97,15 +97,18 @@ public class ScreenCompatActivity extends AppCompatActivity {
     }
 
     public void Login(String email, String password){
+
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            LoadThePayment();
-                        }else{
-                            Toast.makeText(ScreenCompatActivity.this, "No se pudo completar el inicio de sesión", Toast.LENGTH_SHORT).show();
-                        }
+                    public void onSuccess(AuthResult authResult) {
+                        LoadThePayment();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ScreenCompatActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -127,9 +130,10 @@ public class ScreenCompatActivity extends AppCompatActivity {
 
                                 SharedPreferences preferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
 
-                                String name =  user2.name;
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("name", name);
+                                editor.putString("name", user2.name);
+                                editor.putString("role", user2.role);
+                                editor.putString("uuid", snapshot.getKey());
                                 editor.apply();
 
                                 if(user2.payment_active){
@@ -301,5 +305,9 @@ public class ScreenCompatActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void showMessageNotify(String message){
+        Toast.makeText(ScreenCompatActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }

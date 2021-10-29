@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="8dp"
+            android:textColor="@color/COLOR_BLACK_LIGHT"
             android:textAlignment="center"
             android:gravity="center" />
 

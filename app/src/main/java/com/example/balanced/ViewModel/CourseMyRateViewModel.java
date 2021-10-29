@@ -1,5 +1,6 @@
 package com.example.balanced.ViewModel;
 
+import android.provider.Telephony;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.balanced.Entity.Comment;
 import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.CourseMyRateEntity;
+import com.example.balanced.Entity.CourseRate;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -108,6 +110,64 @@ public class CourseMyRateViewModel extends ViewModel {
                     comment.rating = rating;
                     snap.getRef().updateChildren(comment.getMapData());
                 }
+                fetchRatingOfCourse(courseID);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void fetchRatingOfCourse(String courseID){
+        Query query =  mDatabase
+                .child("Courses")
+                .child(courseID)
+                .child("Rates");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long count = snapshot.getChildrenCount();
+
+                float sum = Float.parseFloat("0.0");
+
+                for(DataSnapshot rate: snapshot.getChildren()){
+                    CourseRate courseRate = rate.getValue(CourseRate.class);
+                    courseRate.id = rate.getKey();
+
+                    sum += courseRate.getRatingFloat();
+                }
+                float result = sum / count;
+                mDatabase
+                        .child("Courses")
+                        .child(courseID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Course course = snapshot.getValue(Course.class);
+                            int rateTotal = (int)result;
+                            if(rateTotal > 5){
+                                rateTotal = 5;
+                            }
+                            if(rateTotal < 0){
+                                rateTotal = 0;
+                            }
+
+                            course.rate = Integer.toString(rateTotal);
+
+                            snapshot.getRef()
+                                    .updateChildren(course.getMapData());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
 
             @Override

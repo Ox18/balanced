@@ -21,12 +21,17 @@ import com.example.balanced.Entity.MyCoursePreview;
 import com.example.balanced.Entity.User2;
 import com.example.balanced.R;
 import com.example.balanced.ScreenCompatActivity;
+import com.example.balanced.utils.SpotLightSharedPreference;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.security.Key;
 import java.util.ArrayList;
+
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class LobbyActivity extends ScreenCompatActivity {
     private LinearLayout circleProfile;
@@ -43,6 +48,7 @@ public class LobbyActivity extends ScreenCompatActivity {
     private TextView txtWelcome;
     private TextView txtAlertNotServices;
     private EditText edtSearch;
+    private static final String SHOWCASE_ID = "tutorialkk_lowqdqby2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,7 @@ public class LobbyActivity extends ScreenCompatActivity {
             }
         });
 
+        presentShowcaseSequence();
 
         /**
          * @Description Actión asignada al @EditText para buscar mis cursos por sus nombre
@@ -97,6 +104,56 @@ public class LobbyActivity extends ScreenCompatActivity {
                             }
                         }
                 );
+    }
+
+    private void presentShowcaseSequence() {
+
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+
+        sequence.setOnItemShownListener(new MaterialShowcaseSequence.OnSequenceItemShownListener() {
+            @Override
+            public void onShow(MaterialShowcaseView itemView, int position) {
+
+            }
+        });
+
+        sequence.setConfig(config);
+
+        sequence.addSequenceItem(logoletter, "Hacienco click en el circulo puedes revisar los detalles de tu perfil", "SIGUIENTE");
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setSkipText("SALTAR")
+                        .setTarget(recyclerViewMyCourses)
+                        .setDismissText("SIGUIENTE")
+                        .setContentText("Esta es la lista de tus servicios. Haz click en uno de ellos para ver su contenido")
+                        .withRectangleShape(true)
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(edtSearch)
+                        .setDismissText("SIGUIENTE")
+                        .setContentText("Desde este cuadro de texto puedes filtrar tus servicios por sus nombres.")
+                        .withRectangleShape()
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(recyclerView)
+                        .setDismissText("SIGUIENTE")
+                        .setContentText("Esta es la lista de los servicios disponibles. Haz click en uno de ellos para ver su contenido y suscribirte")
+                        .withRectangleShape()
+                        .build()
+        );
+
+        sequence.start();
+
     }
 
 

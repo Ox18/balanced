@@ -36,10 +36,12 @@
 
 
     </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImage"
         android:layout_width="fill_parent"
         android:layout_height="230dp"
+        android:padding="30dp"
         >
         <ImageView
             android:id="@+id/imageCourse"
@@ -47,20 +49,24 @@
             android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </androidx.cardview.widget.CardView>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:orientation="vertical"
         android:padding="30dp">
 
         <TextView
-            android:id="@+id/txtNombreDelCurso"
+            android:id="@+id/txtCourseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pediatria"
-            android:textSize="22dp"
+            android:textSize="27dp"
+            android:textColor="@color/COLOR_BLACK"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -70,23 +76,24 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="230dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
                 <ImageView
                     android:layout_marginRight="7dp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
                     android:background="@drawable/icon_person"
                     />
                 <TextView
-                    android:id="@+id/txtNameProfesional"
+                    android:textStyle="bold"
+                    android:id="@+id/txtCourseNameProfesional"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wilmer Delgado"
-                    android:textColor="#005ff9"
-                    android:textSize="17dp" />
+                    android:textColor="@color/COLOR_BLACK"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -104,176 +111,75 @@
                     android:id="@id/txtRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.9"
-                    android:textSize="17dp" />
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="@color/COLOR_BLACK"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/txtCourseCountRates"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(0 Puntuaciones)"
+                    android:textColor="@color/COLOR_BLACK_LIGHT"
+                    android:textSize="14dp" />
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/descriptionCourse"
+            android:id="@+id/txtCourseDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
+            android:textColor="@color/COLOR_BLACK_LIGHT"
             android:text="descripcion" />
-
-        <GridLayout
-            android:layout_marginTop="25dp"
-            android:id="@+id/GridLayout1"
+        <TextView
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:orientation="horizontal"
-            android:rowCount="4"
-            tools:context=".GridXMLActivity"
-            tools:layout_editor_absoluteX="56dp"
-            tools:layout_editor_absoluteY="0dp">
-            <LinearLayout
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="left|top">
-                <TextView
-                    android:textSize="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Solicitudes" />
-                <TextView
-                    android:id="@+id/txtRequests"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="left|top">
-                <TextView
-                    android:textSize="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Categoría" />
-                <TextView
-                    android:id="@+id/txtCategory"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Capacitación" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="12dp"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="left|top">
-                <TextView
-                    android:textSize="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Estado" />
-                <TextView
-                    android:id="@+id/txtState"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SUPER" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="12dp"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="left|top">
-                <TextView
-                    android:textSize="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Costo adicional" />
-                <TextView
-                    android:id="@+id/txtPrecioAditional"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="12dp"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="left|top">
-                <TextView
-                    android:textSize="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tiempo de duración" />
-                <TextView
-                    android:id="@+id/txtTime"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 min" />
-
-            </LinearLayout>
-        </GridLayout>
-        <LinearLayout
+            android:text="Lecciones"
+            android:textSize="22dp"
+            android:textColor="@color/COLOR_BLACK"
+            android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/recyclerViewVideos"
             android:layout_width="match_parent"
+            android:minHeight="20dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="bottom"
-            >
-            <Button
-                android:id="@+id/buttonVerCapacitacion"
-                android:visibility="gone"
-                android:background="@drawable/layout_button"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ver capacitación"
-                />
-            <Button
-                android:visibility="gone"
-                android:id="@+id/buttonAction"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/layout_button_red"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cargando..."
-                />
-            <Button
-                android:id="@+id/btnEliminarCurso"
-                android:visibility="gone"
-                android:background="@drawable/layout_button_red"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eliminar"
-                />
-            <Button
-                android:visibility="gone"
-                android:id="@+id/btnEditar"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/layout_button"
-                android:textColor="#fff"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                />
-        </LinearLayout>
+            tools:listitem="@layout/card_video_course" />
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="30dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:background="@color/COLOR_WHITE"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnCourseAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@color/COLOR_WHITE"
+            android:background="@drawable/box_blue"
+            android:visibility="gone"
+            android:text="Adquirir Curso" />
+        <Button
+            android:id="@+id/btnCourseDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:textColor="@color/COLOR_WHITE"
+            android:background="@drawable/box_black_grey"
+            android:text="Eliminar Curso" />
     </LinearLayout>
 </LinearLayout>

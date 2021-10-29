@@ -7,4 +7,14 @@
     <color name="COLOR_TEXT_NORMAL">#edad5b</color>
     <color name="COLOR_TEXT_BAD">#ed5b5b</color>
     <color name="PRIMARY_COLOR">#005ff9</color>
+
+    <!-- Static colors -->
+    <color name="COLOR_BLUE">#005ff9</color>
+    <color name="COLOR_BLACK">#050505</color>
+    <color name="COLOR_WHITE">#ffffff</color>
+    <color name="COLOR_BLACK_LIGHT">#777</color>
+    <color name="COLOR_BLACK_GREY">#303030</color>
+    <color name="COLOR_GREY_LIGHT">#f2f4f5</color>
+    <color name="COLOR_RED">#ff5656</color>
+    <color name="COLOR_BLACK_TRANSPARENT">#000000e0</color>
 </resources>

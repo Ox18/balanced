@@ -14,7 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CourseViewModel extends ViewModel {
 
-    public DatabaseReference mDatabase;
+    private DatabaseReference mDatabase;
     private MutableLiveData<Course> resultado;
 
     public CourseViewModel(){
@@ -27,23 +27,27 @@ public class CourseViewModel extends ViewModel {
     }
 
     public void course(String courseID){
-        mDatabase
+        DatabaseReference courseRef = mDatabase
                 .child("Courses")
-                .child(courseID)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            Course course = snapshot.getValue(Course.class);
-                            resultado.setValue(course);
-                        }
-                    }
+                .child(courseID);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                            resultado.setValue(new Course());
-                    }
-                });
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Course course = snapshot.getValue(Course.class);
+                    resultado.setValue(course);
+                }else{
+                    resultado.setValue(new Course());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                resultado.setValue(new Course());
+            }
+        };
+
+        courseRef.addValueEventListener(eventListener);
     }
-
 }

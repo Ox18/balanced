@@ -97,22 +97,23 @@
                     android:id="@+id/editComentario"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#f1f3f4"
+                    android:background="@drawable/box_grey_light"
                     android:textColor="#797987"
                     android:padding="7dp"
                     android:layout_width="fill_parent" />
                 <LinearLayout
                     android:layout_width="20dp"
                     android:layout_height="match_parent" />
+
                 <Button
-                    android:background="@drawable/layout_button"
                     android:id="@+id/btnComentario"
-                    android:textColor="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:textSize="11dp"
+                    android:background="@drawable/box_blue"
+                    android:text="Comentar"
                     android:textAllCaps="false"
-                    android:text="Comentar" />
+                    android:textColor="#fff"
+                    android:textSize="11dp" />
             </LinearLayout>
             </LinearLayout>
         <LinearLayout

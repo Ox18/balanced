@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@drawable/box_grey_light"
+    android:minHeight="60dp"
+    android:layout_marginBottom="15dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txtNumber"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/COLOR_BLACK_LIGHT"
+        android:layout_marginRight="10dp"
+        android:text="01" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTitle"
+            android:textStyle="bold"
+            android:textColor="@color/COLOR_BLACK_GREY"
+            android:layout_marginBottom="3dp"
+            android:text="test" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtMinute"
+            android:textSize="11dp"
+            android:textColor="@color/COLOR_BLUE"
+            android:text="2:25min" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/llPlay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/layout_image_profile">
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/play_white"
+ />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

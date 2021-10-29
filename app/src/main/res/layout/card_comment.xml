@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:showDividers="middle"
-                        android:textColor="#000"
+                        android:textColor="@color/COLOR_BLACK"
                         android:textStyle="bold"
                         android:text="Zoey Michaels" />
                     <View
@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
                         android:minHeight="23dp"
-                        android:background="@drawable/layout_button_black"
+                        android:background="@drawable/box_black_grey"
                         android:text="eliminar" />
                 </LinearLayout>
             </RelativeLayout>
@@ -85,6 +85,7 @@
             android:id="@+id/commentario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/COLOR_BLACK_LIGHT"
             android:textSize="17dp"
             android:text="This fragment should be smaller, could we use a 3 columns instead of only 2? Thank you!" />
     </LinearLayout>
@@ -94,5 +95,5 @@
         android:layout_width="match_parent"
         android:layout_height="0.1mm"
         android:orientation="vertical"
-        android:background="#ececf0" />
+        android:background="@color/COLOR_BLACK_LIGHT" />
 </LinearLayout>

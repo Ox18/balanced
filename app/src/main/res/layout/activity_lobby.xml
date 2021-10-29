@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f5f8fe"
+    android:background="@color/COLOR_WHITE"
     tools:context=".Activities.LobbyActivity">
     <LinearLayout
         android:layout_marginTop="22dp"
@@ -43,29 +43,8 @@
                 android:text="" />
         </LinearLayout>
     </LinearLayout>
-<LinearLayout
-    android:layout_marginLeft="22dp"
-    android:layout_marginRight="22dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    >
-    <EditText
-        android:id="@+id/editTextSearchByName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:background="#ffffff"
-        android:hint="Buscar por nombre"
-        android:inputType="textPersonName"
-        />
-</LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="15dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,10 +54,23 @@
         <TextView
             android:textStyle="bold"
             android:textSize="22dp"
+            android:textColor="@color/COLOR_BLACK"
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tus servicios" />
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/editTextSearchByName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:ems="10"
+            android:background="@drawable/box_grey_light"
+            android:hint="Buscar por nombre"
+            android:inputType="textPersonName"
+            />
         <TextView
             android:visibility="invisible"
             android:id="@+id/txtAlertNotServices"
@@ -108,6 +100,7 @@
         <TextView
             android:textStyle="bold"
             android:textSize="22dp"
+            android:textColor="@color/COLOR_BLACK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Servicios disponibles" />

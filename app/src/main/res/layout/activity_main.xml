@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="@color/COLOR_BLACK"
             android:textAllCaps="false"
             android:text="Bienvenido nuevamente,\nte extrañamos." />
         <TextView
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textSize="16dp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="@color/COLOR_BLACK"
             android:textAllCaps="false"
             android:paddingTop="15dp"
             android:text="Siempre nos preocupamos por ti" />
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:textColor="#000"
+            android:textColor="@color/COLOR_BLACK"
             android:text="Iniciar sesión" />
         <LinearLayout
             android:layout_marginTop="22dp"
@@ -52,7 +52,7 @@
             android:orientation="vertical"
             >
             <EditText
-                android:background="@drawable/layout_input"
+                android:background="@drawable/box_grey_light"
                 android:layout_width="match_parent"
                 android:height="50dp"
                 android:paddingLeft="10dp"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content" />
             <EditText
                 android:layout_marginTop="15dp"
-                android:background="@drawable/layout_input"
+                android:background="@drawable/box_grey_light"
                 android:height="50dp"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
@@ -78,21 +78,23 @@
                 android:inputType="textPassword" />
         </LinearLayout>
         <Button
-            android:background="@drawable/layout_button"
+            android:background="@drawable/box_blue"
             android:textColor="#fff"
             android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnLogin"
             android:text="Ingresar" />
+
         <TextView
             android:id="@+id/txtResetearPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
             android:paddingTop="10dp"
-            android:textColor="#005ff9"
-            android:text="Recuperar contraseña" />
+            android:text="Recuperar contraseña"
+            android:textAllCaps="false"
+            android:textColor="@color/COLOR_BLUE" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

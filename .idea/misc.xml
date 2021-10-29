@@ -8,6 +8,13 @@
         <entry key="app/src/main/res/drawable-v24/layout_button_black.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable-v24/layout_button_red.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable-v24/layout_button_white.xml" value="0.16944444444444445" />
+        <entry key="app/src/main/res/drawable/box_black.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_black_grey.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_black_light.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_blue.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_grey_light.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_red.xml" value="0.26974358974358975" />
+        <entry key="app/src/main/res/drawable/box_white.xml" value="0.26974358974358975" />
         <entry key="app/src/main/res/drawable/empty_tall_divider.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/drawable/layout_bg.xml" value="0.13802083333333334" />
@@ -17,9 +24,9 @@
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_course.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_course_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_curso_detalle.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_curso_detalle.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_detail_my_course.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_load.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_load.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_lobby.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_lobby_profesional.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
@@ -31,9 +38,11 @@
         <entry key="app/src/main/res/layout/card_comment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_preview_course.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/card_video_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/content_lobby_profesional.xml" value="0.375" />
         <entry key="app/src/main/res/layout/dialog_create_service.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_personalizado.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_show_video.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="app/src/main/res/layout/preview_card_my_course.xml" value="0.375" />
@@ -47,6 +56,13 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.375" />
+      </ProjectState>
+    </option>
   </component>
   <component name="masterDetails">
     <states>
