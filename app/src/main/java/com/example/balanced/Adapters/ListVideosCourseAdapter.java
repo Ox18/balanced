@@ -1,6 +1,8 @@
 package com.example.balanced.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.balanced.Activities.CursoDetalleActivity;
 import com.example.balanced.Activities.LobbyProfesionalActivity;
+import com.example.balanced.Activities.VideoCourseActivity;
 import com.example.balanced.Entity.VideoCourseEntity;
 import com.example.balanced.R;
 
@@ -27,6 +30,8 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
     private List<VideoCourseEntity> dataset;
     private Context context;
     public Boolean active;
+    public String courseID = "";
+    public String userID = "";
 
     public ListVideosCourseAdapter(){
         this.context = context;
@@ -48,6 +53,7 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
         holder.txtTitle.setText(videoCourseEntity.Title);
         holder.txtMinute.setText(videoCourseEntity.time);
         holder.videoURL = videoCourseEntity.url;
+        holder.videoID = videoCourseEntity.id;
         holder.setOnClickListener();
     }
 
@@ -69,12 +75,14 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
             private TextView txtMinute;
             private LinearLayout llPlay;
             private String videoURL;
+            private String videoID;
 
             public  ViewHolder(@NonNull View itemView){
                 super(itemView);
 
                 context = itemView.getContext();
                 videoURL = "";
+                videoID = "";
                 llPlay = itemView.findViewById(R.id.llPlay);
                 txtNumber = itemView.findViewById(R.id.txtNumber);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
@@ -89,7 +97,15 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.llPlay:
-                    PlayVideo(context, videoURL);
+                    //PlayVideo(context, videoURL);
+                  Intent intent = new Intent(context, VideoCourseActivity.class);
+                  intent.putExtra("videoID", videoID);
+                  intent.putExtra("videoURL", videoURL);
+                  intent.putExtra("courseID", courseID);
+                  intent.putExtra("userID", userID);
+
+                  context.startActivity(intent);
+                  //((Activity)context).finish();
                     break;
             }
         }

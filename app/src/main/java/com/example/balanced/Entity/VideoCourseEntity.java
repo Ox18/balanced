@@ -9,6 +9,7 @@ public class VideoCourseEntity {
     public String number;
     public String time;
     public String url;
+    public String id;
 
     public VideoCourseEntity(){
         mDatabase = FirebaseDatabase.getInstance().getReference();

@@ -151,6 +151,7 @@ public class CourseOnlyViewModel extends ViewModel {
                 List<VideoCourseEntity> courseEntities = new ArrayList<>();
                 for(DataSnapshot video: snapshot.getChildren()){
                     VideoCourseEntity videoCourseEntity = video.getValue(VideoCourseEntity.class);
+                    videoCourseEntity.id = video.getKey();
                     courseEntities.add(videoCourseEntity);
                 }
                 listVideosCourse.setValue(courseEntities);

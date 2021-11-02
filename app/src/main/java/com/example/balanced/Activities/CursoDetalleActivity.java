@@ -64,7 +64,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     private Button btnCourseDelete;
     private TextView txtVolver;
     private LinearLayout contentRate;
-    private ListVideosCourseAdapter listVideosCourseAdapter;
+    private ListVideosCourseAdapter listVideosCourseAdapter = new ListVideosCourseAdapter();
     private RecyclerView recyclerViewVideos;
 
     @Override
@@ -84,8 +84,11 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
     }
 
     private void configVew(){
+        String uuid = preferences.getString("uuid", "____");
         listVideosCourseAdapter = new ListVideosCourseAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        listVideosCourseAdapter.courseID = COURSE_ID;
+        listVideosCourseAdapter.userID = uuid;
         recyclerViewVideos = (RecyclerView)findViewById(R.id.recyclerViewVideos);
         recyclerViewVideos.setAdapter(listVideosCourseAdapter);
         recyclerViewVideos.setLayoutManager(linearLayoutManager);
@@ -93,7 +96,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
 
         courseOnlyViewModel = ViewModelProviders.of(this).get(CourseOnlyViewModel.class);
         courseOnlyViewModel.courseID = COURSE_ID;
-        courseOnlyViewModel.uuid = preferences.getString("uuid", "____");
+        courseOnlyViewModel.uuid = uuid;
 
         txtVolver = findViewById(R.id.txtVolver);
         txtCourseName = findViewById(R.id.txtCourseName);
