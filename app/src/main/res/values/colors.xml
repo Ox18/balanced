@@ -17,4 +17,9 @@
     <color name="COLOR_GREY_LIGHT">#f2f4f5</color>
     <color name="COLOR_RED">#ff5656</color>
     <color name="COLOR_BLACK_TRANSPARENT">#000000e0</color>
+
+    <color name="blue_inactive">#5b7592</color>
+    <color name="orange_active">#c77555</color>
+    <color name="blue_background">#0c1533</color>
+    <color name="bg_color">#131f3d</color>
 </resources>

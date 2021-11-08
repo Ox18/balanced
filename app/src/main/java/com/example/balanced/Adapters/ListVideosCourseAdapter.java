@@ -54,6 +54,8 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
         holder.txtMinute.setText(videoCourseEntity.time);
         holder.videoURL = videoCourseEntity.url;
         holder.videoID = videoCourseEntity.id;
+        holder.description = videoCourseEntity.description;
+        holder.title = videoCourseEntity.Title;
         holder.setOnClickListener();
     }
 
@@ -76,12 +78,16 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
             private LinearLayout llPlay;
             private String videoURL;
             private String videoID;
+            private String title;
+            private String description;
 
             public  ViewHolder(@NonNull View itemView){
                 super(itemView);
 
                 context = itemView.getContext();
                 videoURL = "";
+                title = "";
+                description = "";
                 videoID = "";
                 llPlay = itemView.findViewById(R.id.llPlay);
                 txtNumber = itemView.findViewById(R.id.txtNumber);
@@ -97,49 +103,16 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.llPlay:
-                    //PlayVideo(context, videoURL);
                   Intent intent = new Intent(context, VideoCourseActivity.class);
                   intent.putExtra("videoID", videoID);
                   intent.putExtra("videoURL", videoURL);
                   intent.putExtra("courseID", courseID);
                   intent.putExtra("userID", userID);
-
+                  intent.putExtra("title", title);
+                  intent.putExtra("description", description);
                   context.startActivity(intent);
-                  //((Activity)context).finish();
                     break;
             }
         }
-    }
-
-    private void PlayVideo(Context ctx, String videoURL){
-        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.dialog_show_video, null);
-
-        builder.setView(view);
-
-        VideoView video = view.findViewById(R.id.video);
-        TextView txtNote = view.findViewById(R.id.txtNote);
-        ProgressBar progressBar = view.findViewById(R.id.progressBar);
-
-        AlertDialog dialog = builder.create();
-        if(active){
-            progressBar.setVisibility(View.VISIBLE);
-            video.setVideoPath(videoURL);
-            video.start();
-
-
-            new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            progressBar.setVisibility(View.GONE);
-                            video.setVisibility(View.VISIBLE);
-                        }
-                    },
-                    3000);
-        }else{
-            txtNote.setVisibility(View.VISIBLE);
-        }
-        dialog.show();
     }
 }

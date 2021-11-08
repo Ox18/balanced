@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/estudiarFragment"
+    android:icon="@drawable/ic_outline_local_library_normal"
+    android:title="Estudiar" />
+  <item
+    android:id="@+id/explorarFragment"
+    android:icon="@drawable/ic_outline_explore_24"
+    android:title="Explorar" />
+  <item
+    android:id="@+id/descargasFragment"
+    android:icon="@drawable/ic_descargas"
+    android:title="Descargas" />
+  <item
+    android:id="@+id/perfilFragment"
+    android:icon="@drawable/ic_outline_person_normal"
+    android:title="Perfil" />
+</menu>

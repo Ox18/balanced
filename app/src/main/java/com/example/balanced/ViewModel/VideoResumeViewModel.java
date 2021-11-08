@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.VideoResume;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,5 +56,23 @@ public class VideoResumeViewModel extends ViewModel {
     };
 
     courseRef.addValueEventListener(eventListener);
+  }
+
+  public void save(Integer minutes, String userID, String courseID, String videoID){
+    VideoResume videoResume = new VideoResume();
+    videoResume.minute = minutes;
+    mDatabase
+      .child("Users")
+      .child(userID)
+      .child("Courses")
+      .child(courseID)
+      .child("ResumeVideo")
+      .child(videoID)
+      .setValue(videoResume.getMapData())
+      .addOnSuccessListener(new OnSuccessListener<Void>() {
+      @Override
+      public void onSuccess(Void unused) {
+      }
+    });
   }
 }

@@ -10,10 +10,14 @@ import com.example.balanced.ScreenCompatActivity;
 
 public class LoadActivity extends ScreenCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
+
+
+
     }
 
     @Override
