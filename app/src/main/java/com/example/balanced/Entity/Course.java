@@ -16,10 +16,14 @@ public class Course {
     public String profesionalName;
     public String state;
     public String id;
-    public String description;
+    public String description = "";
     public String profesionalID;
     public int request;
     public String category;
+
+    public void setName(String name){
+      this.name = name;
+    }
 
     public Course(){
         mDatabase = FirebaseDatabase.getInstance().getReference();

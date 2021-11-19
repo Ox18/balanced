@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center"
+  android:orientation="vertical"
+  android:padding="22dp"
+  >
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content">
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="#000"
+        android:layout_marginBottom="22dp"
+        android:text="Crear lección" />
+      <TextView
+        android:textAllCaps="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/PRIMARY_COLOR"
+        android:text="Número de lección" />
+      <EditText
+        android:id="@+id/edtNumeroLeccion"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_input"
+        android:layout_width="match_parent"
+        android:height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#B1BCBE"
+        android:textSize="14dp"
+        android:hint="Ingrese el número de la lección: ejm. 01"
+        android:layout_height="wrap_content" />
+      <TextView
+        android:layout_marginTop="22dp"
+        android:textAllCaps="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/PRIMARY_COLOR"
+        android:text="Nombre" />
+      <EditText
+        android:id="@+id/edtNombre"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_input"
+        android:layout_width="match_parent"
+        android:height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#B1BCBE"
+        android:textSize="14dp"
+        android:hint="Ingrese nombre de la lección"
+        android:layout_height="wrap_content" />
+      <TextView
+        android:layout_marginTop="22dp"
+        android:textAllCaps="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/PRIMARY_COLOR"
+        android:text="Descripción" />
+      android:layout_height="wrap_content" />
+      <EditText
+        android:ems="10"
+        android:id="@+id/edtDescription"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_input"
+        android:layout_width="match_parent"
+        android:height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#B1BCBE"
+        android:textSize="14dp"
+        android:hint="Ingrese descripción de la lección"
+        android:layout_height="wrap_content" />
+      <Button
+        android:id="@+id/btnUploadVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload video" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal">
+        <Button
+          android:background="@drawable/layout_button_white"
+          android:id="@+id/btnCancel"
+          android:textColor="#808489"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textAllCaps="false"
+          android:layout_marginRight="5dp"
+          android:text="Cancelar" />
+        <Button
+          android:background="@drawable/layout_button"
+          android:textColor="#fff"
+          android:id="@+id/btnConfirm"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textAllCaps="false"
+          android:layout_marginLeft="5dp"
+          android:text="Crear" />
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+
+</LinearLayout>

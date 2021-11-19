@@ -36,6 +36,7 @@ public class CourseViewModel extends ViewModel {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     Course course = snapshot.getValue(Course.class);
+                    course.id = snapshot.getKey();
                     resultado.setValue(course);
                 }else{
                     resultado.setValue(new Course());

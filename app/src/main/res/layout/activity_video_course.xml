@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
   android:orientation="vertical"
-    tools:context=".Activities.VideoCourseActivity">
+  >
   <FrameLayout
     android:id="@+id/video_layout"
     android:layout_width="fill_parent"
@@ -40,7 +40,7 @@
   </FrameLayout>
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="380dp"
     android:padding="22dp"
     android:orientation="vertical">
     <TextView
@@ -49,7 +49,7 @@
       android:textColor="@color/COLOR_BLACK_GREY"
       android:text="Lección" />
     <TextView
-      android:id="@+id/title"
+      android:id="@+id/txtLeccionTitle"
       android:textStyle="bold"
       android:textSize="22dp"
       android:textColor="@color/COLOR_BLACK"
@@ -82,5 +82,33 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="El estrés es algo que ..." />
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="bottom"
+    android:gravity="bottom"
+    android:padding="22dp"
+    android:id="@+id/llSectionManage"
+    android:visibility="gone"
+    android:orientation="vertical">
+    <Button
+      android:background="@drawable/layout_button"
+      android:textColor="#fff"
+      android:id="@+id/btnVideoEditar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAllCaps="false"
+      android:layout_marginBottom="5dp"
+      android:text="Editar" />
+    <Button
+      android:layout_marginTop="5dp"
+      android:background="@drawable/layout_button_black"
+      android:textColor="#fff"
+      android:id="@+id/btnVideoEliminar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAllCaps="false"
+      android:text="Eliminar" />
   </LinearLayout>
 </LinearLayout>

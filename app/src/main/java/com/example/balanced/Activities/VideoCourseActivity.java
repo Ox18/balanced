@@ -1,27 +1,34 @@
 package com.example.balanced.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.VideoResume;
 import com.example.balanced.R;
-import com.example.balanced.ViewModel.CourseOnlyViewModel;
+import com.example.balanced.ScreenCompatActivity;
+import com.example.balanced.ServiceImpl.LeccionServiceImpl;
 import com.example.balanced.ViewModel.VideoResumeViewModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.universalvideoview.UniversalMediaController;
 import com.universalvideoview.UniversalVideoView;
 
-public class VideoCourseActivity extends AppCompatActivity {
+public class VideoCourseActivity extends ScreenCompatActivity {
 
     private String videoURL;
     private String videoID;
@@ -34,18 +41,25 @@ public class VideoCourseActivity extends AppCompatActivity {
     private TextView txtTitle;
     private TextView txtDescription;
     private TextView txtDuration;
+    private Button btnVideoEliminar;
+    private LinearLayout llSectionManage;
+    private SharedPreferences preferences;
+    private String role;
 
-    @Override
+  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_course);
-      txtDuration = findViewById(R.id.txtDuracion);
+        txtDuration = findViewById(R.id.txtDuracion);
         initParams();
     }
 
     private void initParams(){
-      txtTitle = findViewById(R.id.title);
+      preferences = getSharedPreferences("auth", Context.MODE_PRIVATE);
+      role = preferences.getString("role", "nada");
+      txtTitle = findViewById(R.id.txtLeccionTitle);
       txtDescription = findViewById(R.id.description);
+      btnVideoEliminar = findViewById(R.id.btnVideoEliminar);
 
       Bundle extras = getIntent().getExtras();
       if (extras != null) {
@@ -58,9 +72,41 @@ public class VideoCourseActivity extends AppCompatActivity {
       }
 
       configView();
+
+      btnVideoEliminar.setOnClickListener(onCLickBtnVideoEliminar());
+    }
+
+    private View.OnClickListener onCLickBtnVideoEliminar(){
+      return new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          LeccionServiceImpl leccionService = new LeccionServiceImpl();
+          leccionService.DeleteById(videoID, courseID)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+              @Override
+              public void onSuccess(Void unused) {
+                Toast.makeText(VideoCourseActivity.this, "La lección se elimino satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                finish();
+              }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) {
+                Toast.makeText(VideoCourseActivity.this, "No se pudo eliminar esta lección.", Toast.LENGTH_SHORT).show();
+              }
+            });
+        }
+      };
     }
 
     private void configView(){
+      llSectionManage = findViewById(R.id.llSectionManage);
+
+      if(role.equals("professional")){
+        llSectionManage.setVisibility(View.VISIBLE);
+      }
+
+
       videoResumeViewModel = ViewModelProviders.of(this).get(VideoResumeViewModel.class);
       videoResumeViewModel.course(userID, courseID, videoID);
       configObservers();

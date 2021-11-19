@@ -40,7 +40,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImage"
         android:layout_width="fill_parent"
-        android:layout_height="230dp"
+        android:layout_height="200dp"
         android:padding="30dp"
         >
         <ImageView
@@ -161,25 +161,65 @@
         android:gravity="bottom"
         android:background="@color/COLOR_WHITE"
         android:orientation="vertical">
+      <Button
+        android:id="@+id/btnCourseAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="@color/COLOR_WHITE"
+        android:background="@drawable/box_blue"
+        android:visibility="gone"
+        android:text="Adquirir Curso" />
+      <Button
+        android:id="@+id/btnCourseDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:textColor="@color/COLOR_WHITE"
+        android:background="@drawable/box_black_grey"
+        android:text="Eliminar Curso" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:id="@+id/btnCourseAdd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="@color/COLOR_WHITE"
-            android:background="@drawable/box_blue"
-            android:visibility="gone"
-            android:text="Adquirir Curso" />
+          android:id="@+id/btnEditarCurso"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textAllCaps="false"
+          android:textStyle="bold"
+          android:textColor="@color/COLOR_WHITE"
+          android:background="@drawable/box_blue"
+          android:visibility="gone"
+          android:layout_weight="1"
+          android:layout_marginRight="5dp"
+          android:text="Editar Curso" />
         <Button
-            android:id="@+id/btnCourseDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:visibility="gone"
-            android:textStyle="bold"
-            android:textColor="@color/COLOR_WHITE"
-            android:background="@drawable/box_black_grey"
-            android:text="Eliminar Curso" />
+          android:id="@+id/btnAgregarLeccion"
+          android:layout_marginLeft="5dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textAllCaps="false"
+          android:textStyle="bold"
+          android:textColor="@color/COLOR_WHITE"
+          android:background="@drawable/box_blue"
+          android:visibility="gone"
+          android:layout_weight="1"
+          android:text="Agregar lección" />
+      </LinearLayout>
+      <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/btnCursoDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:textColor="@color/COLOR_WHITE"
+        android:background="@drawable/box_black_grey"
+        android:text="Eliminar Curso" />
     </LinearLayout>
 </LinearLayout>

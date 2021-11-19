@@ -47,7 +47,8 @@
         <entry key="app/src/main/res/layout/card_preview_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/card_video_course.xml" value="0.335" />
         <entry key="app/src/main/res/layout/content_lobby_profesional.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/dialog_create_service.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_create_leccion.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_create_service.xml" value="0.375" />
         <entry key="app/src/main/res/layout/dialog_personalizado.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_show_video.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_descargas.xml" value="0.1" />

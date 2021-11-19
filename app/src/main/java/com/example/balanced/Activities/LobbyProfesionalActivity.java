@@ -1,20 +1,25 @@
 package com.example.balanced.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,11 +30,16 @@ import com.example.balanced.Entity.Course;
 import com.example.balanced.Entity.User2;
 import com.example.balanced.R;
 import com.example.balanced.ScreenCompatActivity;
+import com.example.balanced.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
@@ -42,13 +52,24 @@ public class LobbyProfesionalActivity extends ScreenCompatActivity {
     private RecyclerView recyclerView;
     private MyCoursesProfesionalAdapter myCoursesProfesionalAdapter = new MyCoursesProfesionalAdapter();
     private User2 user = new User2();
+    private Uri imageUri;
+    private ImageView imagePreviewService;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_profesional);
 
-        btnCrear = findViewById(R.id.btnAgregar);
+        // setup progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Por favor espera");
+        progressDialog.setMessage("Cargando tu servicio");
+        progressDialog.setCanceledOnTouchOutside(false);
+
+
+      btnCrear = findViewById(R.id.btnAgregar);
         logoletter = findViewById(R.id.logoLetter);
         txtWelcome = findViewById(R.id.txtWelcome);
         circleProfile = findViewById(R.id.profile_circle);
@@ -60,22 +81,22 @@ public class LobbyProfesionalActivity extends ScreenCompatActivity {
             }
         });
 
-        mDatabase.child("Users")
-                .child(GetID())
-                .addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                user = snapshot.getValue(User2.class);
-                                LoadComponents();
-                            }
+        mDatabase.child("Users").child(GetID()).addListenerForSingleValueEvent(onListenerForSingleUser());
+    }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+    public ValueEventListener onListenerForSingleUser(){
+      return new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+          user = snapshot.getValue(User2.class);
+          LoadComponents();
+        }
 
-                            }
-                        }
-                );
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+      };
     }
 
     public void LoadComponents(){
@@ -111,7 +132,18 @@ public class LobbyProfesionalActivity extends ScreenCompatActivity {
        EditText edtPrecioAdicional = view.findViewById(R.id.edtPrecioAdicional);
        EditText edtURLPhoto = view.findViewById(R.id.edtURLPhoto);
 
-       ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.items_category, android.R.layout.simple_spinner_item);
+       imagePreviewService = findViewById(R.id.imagePreviewService);
+       Button btnPickPortada = view.findViewById(R.id.btnPickPortada);
+
+       btnPickPortada.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+           selectImage();
+         }
+       });
+
+
+      ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.items_category, android.R.layout.simple_spinner_item);
        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
        spinnerCategory.setAdapter(adapter);
 
@@ -131,28 +163,12 @@ public class LobbyProfesionalActivity extends ScreenCompatActivity {
                course.request = 0;
                course.state = "SUPER";
                course.time = edtTiempo.getText().toString();
-               String key = mDatabase.child("Courses").push().getKey();
-
-               mDatabase
-                       .child("Courses")
-                       .child(key)
-                       .setValue(course.getMapData())
-                       .addOnSuccessListener(new OnSuccessListener<Void>() {
-                           @Override
-                           public void onSuccess(Void unused) {
-                               Toast.makeText(getBaseContext(), "Se creo su servicio con exito", Toast.LENGTH_SHORT).show();
-                                LoadCourses();
-                                dialog.dismiss();
-                           }
-                       })
-                       .addOnFailureListener(new OnFailureListener() {
-                           @Override
-                           public void onFailure(@NonNull Exception e) {
-                               Toast.makeText(getBaseContext(), "Falla", Toast.LENGTH_SHORT).show();
-                           }
-                       });
+               dialog.dismiss();
+               uploadService(course);
            }
        });
+
+
 
        btnCancel.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -162,7 +178,77 @@ public class LobbyProfesionalActivity extends ScreenCompatActivity {
        });
     }
 
-    public void LoadAdapater(){
+    private void uploadService(Course course){
+      progressDialog.show();
+
+      // timestamp
+      String timestamp = ""+System.currentTimeMillis();
+
+      // file path and name in firebase storage
+      String filePathAndName = "Images/" + "image_" + timestamp;
+
+      // storage reference
+      StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
+      // upload video
+      storageReference.putFile(imageUri)
+        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+          @Override
+          public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            // video uploaded, get url of uploaded video
+            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+            while(!uriTask.isSuccessful());
+            Uri downloadUri = uriTask.getResult();
+            if(uriTask.isSuccessful()){
+              String key = mDatabase.child("Courses").push().getKey();
+              course.image = downloadUri.toString();
+              mDatabase
+                .child("Courses")
+                .child(key)
+                .setValue(course.getMapData())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                  @Override
+                  public void onSuccess(Void unused) {
+                    Toast.makeText(getBaseContext(), "Se creo su servicio con exito", Toast.LENGTH_SHORT).show();
+                    LoadCourses();
+                    progressDialog.dismiss();
+                  }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getBaseContext(), "Falla", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                  }
+                });
+            }
+          }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+          @Override
+          public void onFailure(@NonNull Exception e) {
+            progressDialog.dismiss();
+            Toast.makeText(LobbyProfesionalActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+          }
+        });
+    }
+
+  private void selectImage() {
+      Intent intent = new Intent();
+      intent.setType("image/");
+      intent.setAction(Intent.ACTION_GET_CONTENT);
+      startActivityForResult(intent, 100);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+      super.onActivityResult(requestCode, resultCode, data);
+
+      if(requestCode == 100 && data != null && data.getData() != null){
+        imageUri = data.getData();
+      }
+  }
+
+  public void LoadAdapater(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerPreviewCourses);
