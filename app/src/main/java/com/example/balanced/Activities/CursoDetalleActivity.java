@@ -369,7 +369,7 @@ public class CursoDetalleActivity extends ScreenCompatActivity {
                   .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                      Toast.makeText(getBaseContext(), "Se creo su servicio con exito", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(getBaseContext(), "Se actualizo su servicio con exito", Toast.LENGTH_SHORT).show();
                       progressDialog.dismiss();
                     }
                   })
