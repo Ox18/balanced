@@ -56,6 +56,7 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
         holder.videoID = videoCourseEntity.id;
         holder.description = videoCourseEntity.description;
         holder.title = videoCourseEntity.Title;
+        holder.numberLeccion = videoCourseEntity.number;
         holder.setOnClickListener();
     }
 
@@ -80,6 +81,7 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
             private String videoID;
             private String title;
             private String description;
+            private String numberLeccion;
 
             public  ViewHolder(@NonNull View itemView){
                 super(itemView);
@@ -89,6 +91,7 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
                 title = "";
                 description = "";
                 videoID = "";
+                numberLeccion = "";
                 llPlay = itemView.findViewById(R.id.llPlay);
                 txtNumber = itemView.findViewById(R.id.txtNumber);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
@@ -110,6 +113,7 @@ public class ListVideosCourseAdapter extends RecyclerView.Adapter<ListVideosCour
                   intent.putExtra("userID", userID);
                   intent.putExtra("title", title);
                   intent.putExtra("description", description);
+                  intent.putExtra("numberLeccion", numberLeccion);
                   context.startActivity(intent);
                     break;
             }
